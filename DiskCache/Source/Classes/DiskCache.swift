@@ -14,6 +14,7 @@ public class DiskCache {
     //MARK: Properties
 
     private let fileManager = NSFileManager()
+    private let ioQueue: dispatch_queue_t
 
     /**
     Data will be cached at this path, e.g. `Library/Caches/com.domain.App.DiskCache`
@@ -29,7 +30,11 @@ public class DiskCache {
         // use "DiskCache" as `bundleIdentifier` iff `mainBundle()`s `bundleIdentifier` is `nil`
         let bundleIdentifier = NSBundle.mainBundle().bundleIdentifier ?? "DiskCache"
 
-        path = cachePath.stringByAppendingPathComponent("\(bundleIdentifier).\(identifier)")
+        let cacheIdentifier = "\(bundleIdentifier).\(identifier)"
+        path = cachePath.stringByAppendingPathComponent(cacheIdentifier)
+
+        let ioQueueLabel = "\(cacheIdentifier).queue"
+        ioQueue = dispatch_queue_create(ioQueueLabel, DISPATCH_QUEUE_SERIAL)
     }
 
     public convenience init() {
