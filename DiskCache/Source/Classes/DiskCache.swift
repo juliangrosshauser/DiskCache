@@ -82,4 +82,40 @@ public class DiskCache {
             }
         }
     }
+
+    //MARK: Retrieve data
+
+    /**
+    Retrieve data asynchronously
+
+    - Parameter key: Key for data
+    - Parameter completionHandler: Called on main thread with retrieved data or error as parameter
+
+    - Warning: Doesn't throw when error happens asynchronously. Check `.Success` or `.Failure` in `Result` parameter of `completionHandler` instead.
+    */
+    public func retrieveDataForKey(key: String, completionHandler: Result<NSData> -> Void) throws {
+        if key.isEmpty {
+            throw DiskCacheError.EmptyKey
+        }
+
+        dispatch_async(ioQueue) {
+            let filePath = self.path.stringByAppendingPathComponent(key)
+
+            if !self.fileManager.fileExistsAtPath(filePath) {
+                dispatch_async(dispatch_get_main_queue()) {
+                    completionHandler(.Failure(DiskCacheError.CacheMiss))
+                }
+            } else {
+                if let data = NSData(contentsOfFile: filePath) {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completionHandler(.Success(data))
+                    }
+                } else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completionHandler(.Failure(DiskCacheError.ReadError))
+                    }
+                }
+            }
+        }
+    }
 }

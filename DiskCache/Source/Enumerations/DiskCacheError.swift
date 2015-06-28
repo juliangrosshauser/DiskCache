@@ -13,4 +13,6 @@ public enum DiskCacheError: ErrorType {
 
     case EmptyKey
     case WriteError
+    case ReadError
+    case CacheMiss
 }
