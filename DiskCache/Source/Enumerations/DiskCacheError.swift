@@ -12,5 +12,5 @@ Contains all `ErrorType`s `DiskCache` can throw
 public enum DiskCacheError: ErrorType {
 
     case EmptyKey
-    case ProblemCreatingFile
+    case WriteError
 }

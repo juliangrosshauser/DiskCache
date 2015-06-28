@@ -76,7 +76,7 @@ public class DiskCache {
                 }
             } else {
                 dispatch_async(dispatch_get_main_queue()) {
-                    completionHandler?(.Failure(DiskCacheError.ProblemCreatingFile))
+                    completionHandler?(.Failure(DiskCacheError.WriteError))
                 }
             }
         }
