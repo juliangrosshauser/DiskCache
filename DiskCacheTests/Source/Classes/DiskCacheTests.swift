@@ -30,4 +30,29 @@ class DiskCacheTests: XCTestCase {
 
         XCTAssertEqual(diskCachePath, diskCache.path, "Path wasn't correctly set")
     }
+
+    func testCachingDataCallsCompletionHandlerWithSuccess() {
+        let diskCache = DiskCache(identifier: "TestDiskCache")
+
+        let message = "TestCachingData"
+        let data = message.dataUsingEncoding(NSUTF8StringEncoding)!
+
+        let completionExpectation = expectationWithDescription("completionHandler called")
+
+        let completionHandler: Result -> Void = { result in
+            if case .Failure(let error) = result {
+                XCTFail("Caching data failed: \(error)")
+            }
+
+            completionExpectation.fulfill()
+        }
+
+        do {
+            try diskCache.cacheData(data, forKey: message, completionHandler: completionHandler)
+        } catch {
+            XCTFail("Caching data failed: \(error)")
+        }
+
+        waitForExpectationsWithTimeout(1, handler: nil)
+    }
 }
