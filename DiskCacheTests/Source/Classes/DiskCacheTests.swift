@@ -10,6 +10,9 @@ import XCTest
 import DiskCache
 
 class DiskCacheTests: XCTestCase {
+
+    private static let diskCacheIdentifier = "TestDiskCache"
+    private let diskCache = DiskCache(identifier: DiskCacheTests.diskCacheIdentifier)
     
     override func setUp() {
         super.setUp()
@@ -20,20 +23,15 @@ class DiskCacheTests: XCTestCase {
     }
 
     func testPathGetsCorrectlySet() {
-        let identifier = "TestDiskCache"
-        let diskCache = DiskCache(identifier: identifier)
-
         let bundleIdentifier = NSBundle.mainBundle().bundleIdentifier ?? "DiskCache"
 
         let paths = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)
-        let diskCachePath = paths.first!.stringByAppendingPathComponent("\(bundleIdentifier).\(identifier)")
+        let diskCachePath = paths.first!.stringByAppendingPathComponent("\(bundleIdentifier).\(DiskCacheTests.diskCacheIdentifier)")
 
         XCTAssertEqual(diskCachePath, diskCache.path, "Path wasn't correctly set")
     }
 
     func testCachingDataCallsCompletionHandlerWithSuccess() {
-        let diskCache = DiskCache(identifier: "TestDiskCache")
-
         let message = "TestCachingData"
         let data = message.dataUsingEncoding(NSUTF8StringEncoding)!
 
