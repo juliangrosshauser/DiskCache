@@ -11,6 +11,7 @@
 		B917FBE31B40250A0040E97D /* DiskCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B917FBE11B40250A0040E97D /* DiskCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B917FBF31B4025240040E97D /* DiskCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917FBF11B4025240040E97D /* DiskCacheTests.swift */; };
 		B917FBF61B4026FC0040E97D /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917FBF51B4026FC0040E97D /* DiskCache.swift */; };
+		B917FBF81B4029F40040E97D /* DiskCacheError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917FBF71B4029F40040E97D /* DiskCacheError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		B917FBEE1B4025240040E97D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B917FBF11B4025240040E97D /* DiskCacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCacheTests.swift; sourceTree = "<group>"; };
 		B917FBF51B4026FC0040E97D /* DiskCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCache.swift; sourceTree = "<group>"; };
+		B917FBF71B4029F40040E97D /* DiskCacheError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskCacheError.swift; path = Enumerations/DiskCacheError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				B917FBF41B4026FC0040E97D /* Classes */,
+				B917FBF91B402A060040E97D /* Enumerations */,
 				B917FBE11B40250A0040E97D /* DiskCache.h */,
 			);
 			path = Source;
@@ -135,6 +138,14 @@
 				B917FBF51B4026FC0040E97D /* DiskCache.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		B917FBF91B402A060040E97D /* Enumerations */ = {
+			isa = PBXGroup;
+			children = (
+				B917FBF71B4029F40040E97D /* DiskCacheError.swift */,
+			);
+			name = Enumerations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B917FBF81B4029F40040E97D /* DiskCacheError.swift in Sources */,
 				B917FBF61B4026FC0040E97D /* DiskCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
