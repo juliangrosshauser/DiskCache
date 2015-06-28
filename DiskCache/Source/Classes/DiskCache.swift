@@ -64,6 +64,7 @@ public class DiskCache {
                 } catch {
                     dispatch_async(dispatch_get_main_queue()) {
                         completionHandler?(.Failure(error))
+                        return
                     }
                 }
             }
