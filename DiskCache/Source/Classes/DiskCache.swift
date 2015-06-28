@@ -13,6 +13,8 @@ public class DiskCache {
 
     //MARK: Properties
 
+    private let fileManager = NSFileManager()
+
     /**
     Data will be cached at this path, e.g. `Library/Caches/com.domain.App.DiskCache`
     */
