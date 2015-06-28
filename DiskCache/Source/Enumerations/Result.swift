@@ -9,8 +9,8 @@
 /**
 Encapsulates success or failure
 */
-public enum Result {
+public enum Result<T> {
 
-    case Success
+    case Success(T)
     case Failure(ErrorType)
 }

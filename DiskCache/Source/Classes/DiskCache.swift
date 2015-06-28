@@ -52,7 +52,7 @@ public class DiskCache {
     
     - Warning: Doesn't throw when error happens asynchronously. Check `.Success` or `.Failure` in `Result` parameter of `completionHandler` instead.
     */
-    public func cacheData(data: NSData, forKey key: String, completionHandler: (Result -> Void)?) throws {
+    public func cacheData(data: NSData, forKey key: String, completionHandler: (Result<Void> -> Void)?) throws {
         if key.isEmpty {
             throw DiskCacheError.EmptyKey
         }
@@ -73,7 +73,7 @@ public class DiskCache {
 
             if self.fileManager.createFileAtPath(filePath, contents: data, attributes: nil) {
                 dispatch_async(dispatch_get_main_queue()) {
-                    completionHandler?(.Success)
+                    completionHandler?(.Success())
                 }
             } else {
                 dispatch_async(dispatch_get_main_queue()) {

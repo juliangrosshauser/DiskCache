@@ -39,7 +39,7 @@ class DiskCacheTests: XCTestCase {
 
         let completionExpectation = expectationWithDescription("completionHandler called")
 
-        let completionHandler: Result -> Void = { result in
+        let completionHandler: Result<Void> -> Void = { result in
             if case .Failure(let error) = result {
                 XCTFail("Caching data failed: \(error)")
             }
