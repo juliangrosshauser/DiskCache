@@ -118,4 +118,36 @@ public class DiskCache {
             }
         }
     }
+
+    //MARK: Remove data
+
+    /**
+    Remove all cached data asynchronously
+
+    - Parameter completionHandler: Called on main thread after all cached data got removed
+
+    - Note: `Result` parameter of `completionHandler` contains `.Success` or `.Failure`
+    */
+    public func removeAllData(completionHandler completionHandler: (Result<Void> -> Void)?) {
+        dispatch_async(ioQueue) {
+            // if path doesn't exist we can exit early with success
+            if !self.fileManager.fileExistsAtPath(self.path) {
+                dispatch_async(dispatch_get_main_queue()) {
+                    completionHandler?(.Success())
+                }
+            } else {
+                do {
+                    try self.fileManager.removeItemAtPath(self.path)
+
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completionHandler?(.Success())
+                    }
+                } catch {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completionHandler?(.Failure(error))
+                    }
+                }
+            }
+        }
+    }
 }
