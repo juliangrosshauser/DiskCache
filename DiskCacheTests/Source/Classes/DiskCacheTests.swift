@@ -53,4 +53,46 @@ class DiskCacheTests: XCTestCase {
 
         waitForExpectationsWithTimeout(1, handler: nil)
     }
+
+    func testRetrievingDataCallsCompletionHandlerWithSuccessAndData() {
+        let key = "TestCachingData"
+        let expectedData = key.dataUsingEncoding(NSUTF8StringEncoding)!
+
+        let cachedExpectation = expectationWithDescription("Data got cached")
+
+        do {
+            try diskCache.cacheData(expectedData, forKey: key) { result in
+                if case .Failure(let error) = result {
+                    XCTFail("Caching data failed: \(error)")
+                }
+
+                cachedExpectation.fulfill()
+            }
+        } catch {
+            XCTFail("Caching data failed: \(error)")
+        }
+
+        waitForExpectationsWithTimeout(1, handler: nil)
+
+        let completionExpectation = expectationWithDescription("completionHandler called")
+
+        let completionHandler: Result<NSData> -> Void = { result in
+            switch result {
+            case .Success(let data):
+                XCTAssertEqual(expectedData, data, "Retrieved data isn't equal to expected data")
+
+                completionExpectation.fulfill()
+            case .Failure(let error):
+                XCTFail("Retrieving data failed: \(error)")
+            }
+        }
+
+        do {
+            try diskCache.retrieveDataForKey(key, completionHandler: completionHandler)
+        } catch {
+            XCTFail("Retrieving data failed: \(error)")
+        }
+
+        waitForExpectationsWithTimeout(1, handler: nil)
+    }
 }
