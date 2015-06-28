@@ -12,6 +12,7 @@
 		B917FBF31B4025240040E97D /* DiskCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917FBF11B4025240040E97D /* DiskCacheTests.swift */; };
 		B917FBF61B4026FC0040E97D /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917FBF51B4026FC0040E97D /* DiskCache.swift */; };
 		B917FBF81B4029F40040E97D /* DiskCacheError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917FBF71B4029F40040E97D /* DiskCacheError.swift */; };
+		B917FC3E1B403D8B0040E97D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917FC3D1B403D8B0040E97D /* Result.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 		B917FBF11B4025240040E97D /* DiskCacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCacheTests.swift; sourceTree = "<group>"; };
 		B917FBF51B4026FC0040E97D /* DiskCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCache.swift; sourceTree = "<group>"; };
 		B917FBF71B4029F40040E97D /* DiskCacheError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskCacheError.swift; path = Enumerations/DiskCacheError.swift; sourceTree = "<group>"; };
+		B917FC3D1B403D8B0040E97D /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Enumerations/Result.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				B917FBF71B4029F40040E97D /* DiskCacheError.swift */,
+				B917FC3D1B403D8B0040E97D /* Result.swift */,
 			);
 			name = Enumerations;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B917FC3E1B403D8B0040E97D /* Result.swift in Sources */,
 				B917FBF81B4029F40040E97D /* DiskCacheError.swift in Sources */,
 				B917FBF61B4026FC0040E97D /* DiskCache.swift in Sources */,
 			);
