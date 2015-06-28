@@ -10,6 +10,7 @@
 		B917FBCE1B40244E0040E97D /* DiskCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B917FBC31B40244E0040E97D /* DiskCache.framework */; };
 		B917FBE31B40250A0040E97D /* DiskCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B917FBE11B40250A0040E97D /* DiskCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B917FBF31B4025240040E97D /* DiskCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917FBF11B4025240040E97D /* DiskCacheTests.swift */; };
+		B917FBF61B4026FC0040E97D /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917FBF51B4026FC0040E97D /* DiskCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		B917FBE11B40250A0040E97D /* DiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiskCache.h; sourceTree = "<group>"; };
 		B917FBEE1B4025240040E97D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B917FBF11B4025240040E97D /* DiskCacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCacheTests.swift; sourceTree = "<group>"; };
+		B917FBF51B4026FC0040E97D /* DiskCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 		B917FBE01B40250A0040E97D /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B917FBF41B4026FC0040E97D /* Classes */,
 				B917FBE11B40250A0040E97D /* DiskCache.h */,
 			);
 			path = Source;
@@ -122,6 +125,14 @@
 			isa = PBXGroup;
 			children = (
 				B917FBF11B4025240040E97D /* DiskCacheTests.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		B917FBF41B4026FC0040E97D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B917FBF51B4026FC0040E97D /* DiskCache.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -233,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B917FBF61B4026FC0040E97D /* DiskCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
