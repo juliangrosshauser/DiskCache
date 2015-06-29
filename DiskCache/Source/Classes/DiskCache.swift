@@ -150,4 +150,41 @@ public class DiskCache {
             }
         }
     }
+
+    /**
+    Remove cached data with key asynchronously
+
+    - Parameter key: Key for data
+    - Parameter completionHandler: Called on main thread after cached data got removed
+
+    - Warning: Doesn't throw when error happens asynchronously. Check `.Success` or `.Failure` in `Result` parameter of `completionHandler` instead.
+    */
+    public func removeDataForKey(key: String, completionHandler: (Result<Void> -> Void)?) throws {
+        if key.isEmpty {
+            throw DiskCacheError.EmptyKey
+        }
+
+        dispatch_async(ioQueue) {
+            let filePath = self.path.stringByAppendingPathComponent(key)
+
+            // if file doesn't exist we can exit early with success
+            if !self.fileManager.fileExistsAtPath(filePath) {
+                dispatch_async(dispatch_get_main_queue()) {
+                    completionHandler?(.Success())
+                }
+            } else {
+                do {
+                    try self.fileManager.removeItemAtPath(filePath)
+
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completionHandler?(.Success())
+                    }
+                } catch {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completionHandler?(.Failure(error))
+                    }
+                }
+            }
+        }
+    }
 }
