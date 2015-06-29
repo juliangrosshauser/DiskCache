@@ -113,4 +113,22 @@ extension DiskCacheTests {
             XCTFail("Error clearing cache data: \(error)")
         }
     }
+
+    private func createCacheData(data: NSData, forKey key: String) {
+        if key.isEmpty {
+            XCTFail("Can't create cache data with empty key")
+        }
+
+        if !fileManager.fileExistsAtPath(diskCache.path) {
+            do {
+                try fileManager.createDirectoryAtPath(diskCache.path, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                XCTFail("Creating cache directory failed: \(error)")
+            }
+        }
+
+        let filePath = diskCache.path.stringByAppendingPathComponent(key)
+
+        XCTAssertTrue(fileManager.createFileAtPath(filePath, contents: data, attributes: nil), "Creating cache data failed")
+    }
 }
