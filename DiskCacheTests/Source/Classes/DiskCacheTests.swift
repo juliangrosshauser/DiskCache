@@ -54,7 +54,7 @@ class DiskCacheTests: XCTestCase {
             XCTFail("Caching data failed: \(error)")
         }
 
-        waitForExpectationsWithTimeout(1, handler: nil)
+        waitForExpectationsWithTimeout(0.05, handler: nil)
     }
 
     func testRetrievingDataCallsCompletionHandlerWithSuccessAndData() {
@@ -82,7 +82,7 @@ class DiskCacheTests: XCTestCase {
             XCTFail("Retrieving data failed: \(error)")
         }
 
-        waitForExpectationsWithTimeout(1, handler: nil)
+        waitForExpectationsWithTimeout(0.05, handler: nil)
     }
 }
 
