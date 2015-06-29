@@ -13,6 +13,7 @@ class DiskCacheTests: XCTestCase {
 
     private static let diskCacheIdentifier = "TestDiskCache"
     private let diskCache = DiskCache(identifier: DiskCacheTests.diskCacheIdentifier)
+    private let fileManager = NSFileManager()
     
     override func setUp() {
         super.setUp()
