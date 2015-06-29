@@ -18,17 +18,13 @@ class DiskCacheTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        let allDataRemovedExpectation = expectationWithDescription("All data got removed")
-
-        diskCache.removeAllData { result in
-            if case .Failure(let error) = result {
-                XCTFail("Error removing all data: \(error)")
+        do {
+            if self.fileManager.fileExistsAtPath(diskCache.path) {
+                try self.fileManager.removeItemAtPath(diskCache.path)
             }
-
-            allDataRemovedExpectation.fulfill()
+        } catch {
+            XCTFail("Error clearing cache data: \(error)")
         }
-
-        waitForExpectationsWithTimeout(0.5, handler: nil)
     }
     
     override func tearDown() {
