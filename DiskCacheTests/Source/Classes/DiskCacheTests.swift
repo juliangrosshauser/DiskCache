@@ -61,21 +61,7 @@ class DiskCacheTests: XCTestCase {
         let key = "TestCachingData"
         let expectedData = key.dataUsingEncoding(NSUTF8StringEncoding)!
 
-        let cachedExpectation = expectationWithDescription("Data got cached")
-
-        do {
-            try diskCache.cacheData(expectedData, forKey: key) { result in
-                if case .Failure(let error) = result {
-                    XCTFail("Caching data failed: \(error)")
-                }
-
-                cachedExpectation.fulfill()
-            }
-        } catch {
-            XCTFail("Caching data failed: \(error)")
-        }
-
-        waitForExpectationsWithTimeout(1, handler: nil)
+        createCacheData(expectedData, forKey: key)
 
         let completionExpectation = expectationWithDescription("completionHandler called")
 
