@@ -18,13 +18,7 @@ class DiskCacheTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        do {
-            if self.fileManager.fileExistsAtPath(diskCache.path) {
-                try self.fileManager.removeItemAtPath(diskCache.path)
-            }
-        } catch {
-            XCTFail("Error clearing cache data: \(error)")
-        }
+        clearAllCachedData()
     }
     
     override func tearDown() {
@@ -103,5 +97,20 @@ class DiskCacheTests: XCTestCase {
         }
 
         waitForExpectationsWithTimeout(1, handler: nil)
+    }
+}
+
+//MARK: Test Helpers
+
+extension DiskCacheTests {
+
+    private func clearAllCachedData() {
+        do {
+            if fileManager.fileExistsAtPath(diskCache.path) {
+                try fileManager.removeItemAtPath(diskCache.path)
+            }
+        } catch {
+            XCTFail("Error clearing cache data: \(error)")
+        }
     }
 }
