@@ -14,6 +14,7 @@ class DiskCacheTests: XCTestCase {
     private static let diskCacheIdentifier = "TestDiskCache"
     private let diskCache = DiskCache(identifier: DiskCacheTests.diskCacheIdentifier)
     private let fileManager = NSFileManager()
+    private let expectationTimeout = 0.05
     
     override func setUp() {
         super.setUp()
@@ -54,7 +55,7 @@ class DiskCacheTests: XCTestCase {
             XCTFail("Caching data failed: \(error)")
         }
 
-        waitForExpectationsWithTimeout(0.05, handler: nil)
+        waitForExpectationsWithTimeout(expectationTimeout, handler: nil)
     }
 
     func testRetrievingDataCallsCompletionHandlerWithSuccessAndData() {
@@ -82,7 +83,7 @@ class DiskCacheTests: XCTestCase {
             XCTFail("Retrieving data failed: \(error)")
         }
 
-        waitForExpectationsWithTimeout(0.05, handler: nil)
+        waitForExpectationsWithTimeout(expectationTimeout, handler: nil)
     }
 }
 
