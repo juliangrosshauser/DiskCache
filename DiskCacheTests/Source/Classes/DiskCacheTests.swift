@@ -141,4 +141,10 @@ extension DiskCacheTests {
 
         XCTAssertTrue(fileManager.createFileAtPath(filePath, contents: data, attributes: nil), "Creating cache data failed")
     }
+
+    private func cachedDataExistsWithKey(key: String) -> Bool {
+        let filePath = diskCache.path.stringByAppendingPathComponent(key)
+
+        return fileManager.fileExistsAtPath(filePath)
+    }
 }
