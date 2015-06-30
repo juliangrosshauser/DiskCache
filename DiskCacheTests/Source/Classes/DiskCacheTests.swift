@@ -108,6 +108,33 @@ class DiskCacheTests: XCTestCase {
 
         XCTAssertFalse(fileManager.fileExistsAtPath(diskCache.path), "Cache directory shouldn't exist anymore")
     }
+
+    func testRemoveDataForKeyRemovesCachedData() {
+        let key = "TestCachingData"
+        let data = key.dataUsingEncoding(NSUTF8StringEncoding)!
+
+        createCacheData(data, forKey: key)
+
+        let completionExpectation = expectationWithDescription("completionHandler called")
+
+        let completionHandler: Result<Void> -> Void = { result in
+            if case .Failure(let error) = result {
+                XCTFail("Removing cached data failed: \(error)")
+            }
+
+            completionExpectation.fulfill()
+        }
+
+        do {
+            try diskCache.removeDataForKey(key, completionHandler: completionHandler)
+        } catch {
+            XCTFail("Removing cached data failed: \(error)")
+        }
+
+        waitForExpectationsWithTimeout(expectationTimeout, handler: nil)
+
+        XCTAssertFalse(cachedDataExistsWithKey(key), "Cached data shouldn't exist anymore")
+    }
 }
 
 //MARK: Test Helpers
