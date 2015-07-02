@@ -135,6 +135,38 @@ class DiskCacheTests: XCTestCase {
 
         XCTAssertFalse(cachedDataExistsWithKey(key), "Cached data shouldn't exist anymore")
     }
+    
+    func testRemoveDataForKeyRemovesOnlyCachedDataForKey() {
+        let keyThatShouldBeRemoved = "DataShouldBeRemoved"
+        let dataThatShouldBeRemoved = keyThatShouldBeRemoved.dataUsingEncoding(NSUTF8StringEncoding)!
+        
+        let keyThatShouldntBeRemoved = "DataShouldntBeRemoved"
+        let dataThatShouldntBeRemoved = keyThatShouldntBeRemoved.dataUsingEncoding(NSUTF8StringEncoding)!
+        
+        createCacheData(dataThatShouldBeRemoved, forKey: keyThatShouldBeRemoved)
+        createCacheData(dataThatShouldntBeRemoved, forKey: keyThatShouldntBeRemoved)
+        
+        let completionExpectation = expectationWithDescription("completionHandler called")
+        
+        let completionHandler: Result<Void> -> Void = { result in
+            if case .Failure(let error) = result {
+                XCTFail("Removing cached data failed: \(error)")
+            }
+            
+            completionExpectation.fulfill()
+        }
+        
+        do {
+            try diskCache.removeDataForKey(keyThatShouldBeRemoved, completionHandler: completionHandler)
+        } catch {
+            XCTFail("Removing cached data failed: \(error)")
+        }
+        
+        waitForExpectationsWithTimeout(expectationTimeout, handler: nil)
+        
+        XCTAssertFalse(cachedDataExistsWithKey(keyThatShouldBeRemoved), "Cached data shouldn't exist anymore")
+        XCTAssertTrue(cachedDataExistsWithKey(keyThatShouldntBeRemoved), "Cached data shouldn't be removed")
+    }
 }
 
 //MARK: Test Helpers
