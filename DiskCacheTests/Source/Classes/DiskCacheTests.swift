@@ -166,7 +166,7 @@ class DiskCacheTests: XCTestCase {
 
         waitForExpectationsWithTimeout(expectationTimeout, handler: nil)
 
-        XCTAssertFalse(cachedDataExistsWithKey(key), "Cached data shouldn't exist anymore")
+        XCTAssertFalse(cachedDataExistsForKey(key), "Cached data shouldn't exist anymore")
     }
     
     func testRemoveDataForKeyRemovesOnlyCachedDataForKey() {
@@ -197,8 +197,8 @@ class DiskCacheTests: XCTestCase {
         
         waitForExpectationsWithTimeout(expectationTimeout, handler: nil)
         
-        XCTAssertFalse(cachedDataExistsWithKey(keyThatShouldBeRemoved), "Cached data shouldn't exist anymore")
-        XCTAssertTrue(cachedDataExistsWithKey(keyThatShouldntBeRemoved), "Cached data shouldn't be removed")
+        XCTAssertFalse(cachedDataExistsForKey(keyThatShouldBeRemoved), "Cached data shouldn't exist anymore")
+        XCTAssertTrue(cachedDataExistsForKey(keyThatShouldntBeRemoved), "Cached data shouldn't be removed")
     }
 }
 
@@ -234,7 +234,7 @@ extension DiskCacheTests {
         XCTAssertTrue(fileManager.createFileAtPath(filePath, contents: data, attributes: nil), "Creating cache data failed")
     }
 
-    private func cachedDataExistsWithKey(key: String) -> Bool {
+    private func cachedDataExistsForKey(key: String) -> Bool {
         let filePath = diskCache.path.stringByAppendingPathComponent(key)
 
         return fileManager.fileExistsAtPath(filePath)
