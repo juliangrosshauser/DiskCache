@@ -36,8 +36,8 @@ class DiskCacheTests: XCTestCase {
     }
 
     func testCachingDataCallsCompletionHandlerWithSuccess() {
-        let message = "TestCachingData"
-        let data = message.dataUsingEncoding(NSUTF8StringEncoding)!
+        let key = "TestCachingData"
+        let data = key.dataUsingEncoding(NSUTF8StringEncoding)!
 
         let completionExpectation = expectationWithDescription("completionHandler called")
 
@@ -50,7 +50,7 @@ class DiskCacheTests: XCTestCase {
         }
 
         do {
-            try diskCache.cacheData(data, forKey: message, completionHandler: completionHandler)
+            try diskCache.cacheData(data, forKey: key, completionHandler: completionHandler)
         } catch {
             XCTFail("Caching data failed: \(error)")
         }
