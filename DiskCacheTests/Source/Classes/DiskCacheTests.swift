@@ -86,6 +86,39 @@ class DiskCacheTests: XCTestCase {
         waitForExpectationsWithTimeout(expectationTimeout, handler: nil)
     }
 
+    func testCachingDataOverwritesExistingCachedDataWithSameKey() {
+        let key = "TestCachingData"
+        let dataToBeOverwritten = "Data to be overwritten".dataUsingEncoding(NSUTF8StringEncoding)!
+        let expectedData = "Expected data".dataUsingEncoding(NSUTF8StringEncoding)!
+
+        createCacheData(dataToBeOverwritten, forKey: key)
+
+        let completionExpectation = expectationWithDescription("completionHandler called")
+
+        let completionHandler: Result<Void> -> Void = { result in
+            if case .Failure(let error) = result {
+                XCTFail("Caching data failed: \(error)")
+            }
+
+            completionExpectation.fulfill()
+        }
+
+        do {
+            try diskCache.cacheData(expectedData, forKey: key, completionHandler: completionHandler)
+        } catch {
+            XCTFail("Caching data failed: \(error)")
+        }
+
+        waitForExpectationsWithTimeout(expectationTimeout, handler: nil)
+
+        do {
+            let cachedData = try cachedDataForKey(key)
+            XCTAssertEqual(cachedData, expectedData, "Retrieved data isn't equal to expected data")
+        } catch {
+            XCTFail("Retrieving data failed: \(error)")
+        }
+    }
+
     func testRemoveAllDataRemovesCacheDirectory() {
         let key = "TestCachingData"
         let data = key.dataUsingEncoding(NSUTF8StringEncoding)!
@@ -205,5 +238,15 @@ extension DiskCacheTests {
         let filePath = diskCache.path.stringByAppendingPathComponent(key)
 
         return fileManager.fileExistsAtPath(filePath)
+    }
+
+    private func cachedDataForKey(key: String) throws -> NSData {
+        let filePath = diskCache.path.stringByAppendingPathComponent(key)
+
+        if let data = NSData(contentsOfFile: filePath) {
+            return data
+        } else {
+            throw DiskCacheError.CacheMiss
+        }
     }
 }
