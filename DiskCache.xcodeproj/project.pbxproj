@@ -13,6 +13,10 @@
 		B917FBF61B4026FC0040E97D /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917FBF51B4026FC0040E97D /* DiskCache.swift */; };
 		B917FBF81B4029F40040E97D /* DiskCacheError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917FBF71B4029F40040E97D /* DiskCacheError.swift */; };
 		B917FC3E1B403D8B0040E97D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917FC3D1B403D8B0040E97D /* Result.swift */; };
+		B93CE9441B48794300CC6D96 /* CachingDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93CE9431B48794300CC6D96 /* CachingDataTests.swift */; };
+		B96B6B1B1B498E44001186AB /* RetrievingDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96B6B1A1B498E44001186AB /* RetrievingDataTests.swift */; };
+		B96B6B1D1B498ECC001186AB /* RemovingDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96B6B1C1B498ECC001186AB /* RemovingDataTests.swift */; };
+		B96B6B1F1B49906E001186AB /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96B6B1E1B49906E001186AB /* TestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,10 @@
 		B917FBF51B4026FC0040E97D /* DiskCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCache.swift; sourceTree = "<group>"; };
 		B917FBF71B4029F40040E97D /* DiskCacheError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskCacheError.swift; path = Enumerations/DiskCacheError.swift; sourceTree = "<group>"; };
 		B917FC3D1B403D8B0040E97D /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Enumerations/Result.swift; sourceTree = "<group>"; };
+		B93CE9431B48794300CC6D96 /* CachingDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachingDataTests.swift; sourceTree = "<group>"; };
+		B96B6B1A1B498E44001186AB /* RetrievingDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrievingDataTests.swift; sourceTree = "<group>"; };
+		B96B6B1C1B498ECC001186AB /* RemovingDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemovingDataTests.swift; sourceTree = "<group>"; };
+		B96B6B1E1B49906E001186AB /* TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +138,10 @@
 			isa = PBXGroup;
 			children = (
 				B917FBF11B4025240040E97D /* DiskCacheTests.swift */,
+				B96B6B1E1B49906E001186AB /* TestHelpers.swift */,
+				B93CE9431B48794300CC6D96 /* CachingDataTests.swift */,
+				B96B6B1A1B498E44001186AB /* RetrievingDataTests.swift */,
+				B96B6B1C1B498ECC001186AB /* RemovingDataTests.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -268,7 +280,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B96B6B1B1B498E44001186AB /* RetrievingDataTests.swift in Sources */,
+				B96B6B1F1B49906E001186AB /* TestHelpers.swift in Sources */,
 				B917FBF31B4025240040E97D /* DiskCacheTests.swift in Sources */,
+				B96B6B1D1B498ECC001186AB /* RemovingDataTests.swift in Sources */,
+				B93CE9441B48794300CC6D96 /* CachingDataTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
