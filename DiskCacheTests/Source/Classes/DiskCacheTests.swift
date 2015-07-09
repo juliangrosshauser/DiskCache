@@ -16,12 +16,6 @@ let expectationTimeout = 0.05
 
 class DiskCacheTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-
-        clearAllCachedData()
-    }
-
     func testPathGetsCorrectlySet() {
         let bundleIdentifier = NSBundle.mainBundle().bundleIdentifier ?? "DiskCache"
 
