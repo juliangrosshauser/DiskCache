@@ -152,7 +152,7 @@ public class DiskCache {
     }
 
     /**
-    Remove cached data with key asynchronously
+    Remove cached data for key asynchronously
 
     - Parameter key: Key for data
     - Parameter completionHandler: Called on main thread after cached data got removed
