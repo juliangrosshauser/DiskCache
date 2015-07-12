@@ -17,7 +17,7 @@ class RetrievingDataTests: XCTestCase {
         clearAllCachedData()
     }
 
-    func testRetrievingDataCallsCompletionHandlerWithSuccessAndData() {
+    func testRetrievingDataCallsCompletionHandlerWithSuccessAndExpectedData() {
         let key = "TestCachingData"
         let expectedData = key.dataUsingEncoding(NSUTF8StringEncoding)!
 
