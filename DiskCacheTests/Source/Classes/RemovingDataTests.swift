@@ -18,7 +18,7 @@ class RemovingDataTests: XCTestCase {
     }
 
     func testRemoveAllDataRemovesCacheDirectory() {
-        let key = "TestCachingData"
+        let key = "TestRemovingData"
         let data = key.dataUsingEncoding(NSUTF8StringEncoding)!
 
         createCacheData(data, forKey: key)
@@ -41,7 +41,7 @@ class RemovingDataTests: XCTestCase {
     }
 
     func testRemoveDataForKeyRemovesCachedData() {
-        let key = "TestCachingData"
+        let key = "TestRemovingData"
         let data = key.dataUsingEncoding(NSUTF8StringEncoding)!
 
         createCacheData(data, forKey: key)

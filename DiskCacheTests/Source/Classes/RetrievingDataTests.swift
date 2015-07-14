@@ -18,7 +18,7 @@ class RetrievingDataTests: XCTestCase {
     }
 
     func testRetrievingDataCallsCompletionHandlerWithSuccessAndExpectedData() {
-        let key = "TestCachingData"
+        let key = "TestRetrievingData"
         let expectedData = key.dataUsingEncoding(NSUTF8StringEncoding)!
 
         createCacheData(expectedData, forKey: key)
