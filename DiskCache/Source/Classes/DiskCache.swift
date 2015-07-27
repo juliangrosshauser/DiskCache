@@ -50,6 +50,8 @@ public class DiskCache {
     - Parameter forKey: Key for data
     - Parameter completionHandler: Called on main thread after data is cached
     
+    - Throws: `DiskCacheError.EmptyKey` if `key` parameter is empty.
+    
     - Warning: Doesn't throw when error happens asynchronously. Check `.Success` or `.Failure` in `Result` parameter of `completionHandler` instead.
     */
     public func cacheData(data: NSData, forKey key: String, completionHandler: (Result<Void> -> Void)?) throws {
@@ -90,6 +92,8 @@ public class DiskCache {
 
     - Parameter key: Key for data
     - Parameter completionHandler: Called on main thread with retrieved data or error as parameter
+    
+    - Throws: `DiskCacheError.EmptyKey` if `key` parameter is empty.
 
     - Warning: Doesn't throw when error happens asynchronously. Check `.Success` or `.Failure` in `Result` parameter of `completionHandler` instead.
     */
@@ -156,6 +160,8 @@ public class DiskCache {
 
     - Parameter key: Key for data
     - Parameter completionHandler: Called on main thread after cached data got removed
+    
+    - Throws: `DiskCacheError.EmptyKey` if `key` parameter is empty.
 
     - Warning: Doesn't throw when error happens asynchronously. Check `.Success` or `.Failure` in `Result` parameter of `completionHandler` instead.
     */
